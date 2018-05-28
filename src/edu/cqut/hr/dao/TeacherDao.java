@@ -10,8 +10,9 @@ import java.util.Map;
 
 import edu.cqut.hr.db.DBUtil;
 import edu.cqut.hr.model.Teacher;
+import edu.cqut.hr.service.TeacherService;
 
-public class TeacherDao {
+public class TeacherDao implements TeacherService{
 	
 	private static TeacherDao teacherDao;
 

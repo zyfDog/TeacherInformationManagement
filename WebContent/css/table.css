@@ -1,0 +1,225 @@
+*{
+	margin: 0px;
+	border:0px;	
+	padding: 0px;
+}
+body{
+	width: 1920px;	
+	height: 900px;	
+	border:solid 1px gray;
+	margin: 0 auto;
+	background-color:white;
+}
+.all{
+	width: 1600px;
+	height: 900px;
+	margin: 0 auto;
+}
+.head{
+	width: 1600px;
+	height: 150px;
+}
+.headTop{
+	width: 1600px;
+	height: 70px;
+}
+.titleline{
+	float: left;
+	width: 500px;
+	height: 5px;
+	background-color:gray;
+	position: relative;
+	top: 30px;
+}
+.title{
+	float: left;
+	width: 600px;
+	height: 30px;
+	text-align: center;
+	font-size: 30px;
+	position: relative;
+	top: 20px;
+}
+.headBottom{
+	width: 1600px;	
+	height: 80px;	
+}
+.addButton,.upButton{
+	background-color: #2272b4;
+	border-radius: 5px;
+	
+}
+.deleteButton,.downButton{
+	background-color: #2272b4 ;
+	border-radius: 5px;
+}
+.deleteButton,.addButton,.upButton,.downButton{
+	width: 150px;
+	height: 50px;
+	color: white;
+	font-size: 15px;
+}
+.content{
+	width: 1600px;
+	height: 600px;
+	border:solid 1px gray;
+	margin: 0px 0px 20px;
+}
+.tab{
+	width: 1600px;
+	height: 600px;
+	border: 0;
+	border-collapse: collapse;
+}
+th{
+	height: 60px;
+	border: 1px solid;
+}
+a{
+	text-decoration: none;	
+}
+td{
+	height: 54px;
+	text-align: center;
+	border: 1px solid;
+}
+.backGroundColor2{
+	background-color: white;
+}
+.backGroundColor1{
+	background-color: #f1f1f1;
+}
+#c9{
+	width: 200px;
+	cursor: pointer;
+}
+.operator1 {
+	width: 75px;
+	margin: 0px 0px 0px 20px;
+	border: none;
+	border-bottom: 1px solid;	
+}
+.operator2{
+	width: 75px;
+	margin: 0px 20px 0px 0px;
+	border: none;
+	border-bottom: 1px solid;		
+}
+.operator3{
+	width: 75px;
+	margin: 0px 20px 0px 0px;
+	border: none;
+	border-bottom: 1px solid;	
+}
+
+.operator1 img ,.operator2 img,.operator3 img{
+	width: 30px;
+	height: 30px;
+}
+
+.footer{
+	width: 1600px;
+	height: 130px;
+}
+.footerLeft{
+	float: left;
+	width: 780px;
+	height: 50px;
+}
+.footerRight{ 
+	width: 800px;
+	height: 130px;
+	float: right;
+}
+.upButton,.downButton{
+	float: right;
+	margin:0 0 0 10px;
+}
+.backGroundColor{
+	width: 1920px;
+	height: 900px;
+	background-color: black;
+	opacity:0.3;
+	filter:alpha(opacity=30);
+	position:relative;
+	top: -900px;
+	display:none;
+	z-index: 2;
+}
+.addInterface,.amendInterface,.checkInterface{
+	width: 1000px;
+	height: 600px;
+	position:  relative;
+	top: -1650px;
+	left:500px;
+	display:none;
+	z-index: 3;
+	background-color: white;
+}
+.deleteInterface{
+	width: 500px;
+	height: 150px;
+	position:  relative;
+	top: -1450px;
+	left:700px;
+	display:none;
+	z-index: 3;
+	background-color: white;	
+}
+.interface-top{
+	width: 1000px;
+	height: 30px;
+	background-color: gray;
+	font-size: 25px;
+	color: white;
+}
+.interface-middle{
+	width: 1000px;
+	height: 450px;
+	margin: 10px auto;
+}
+.interface-middle input{
+	width: 300px;
+	height: 40px;
+	font-size: 18px; 
+	text-align: center;
+}
+input{
+	border:solid 1px black;
+}
+#interface-from{
+	text-align: center;
+	position: relative;
+	top: 30px;
+	left: 300px
+}
+.interface-bottom{
+	width: 1000px;
+	height: 40px;
+	border-top:solid 1px black;
+}
+
+#after-from{
+	position: relative;
+	top: 20px;
+	left: 780px	;
+}
+.submitButton ,.CancelButton,.saveButton,.ensureButton{
+	width: 100px;
+	height: 50px;
+	color: black;	
+	font-size: 20px;
+}
+.submitButton,.saveButton {
+	background-color: #2272b4;
+}
+.CancelButton{
+	background-color:white;		
+}
+.ensureButton{
+	position: relative;
+	left:100px	
+}
+/*  placehoder 居中 */
+input::-ms-input-placeholder{text-align: center;} 
+input::-webkit-input-placeholder{text-align: center;} 

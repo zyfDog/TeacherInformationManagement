@@ -58,10 +58,10 @@ public class LoginAction extends HttpServlet {
 		if(flag)
 		{
 			request.getSession().setAttribute("username", username);  
-			out.println("<h1>登录成功</h1>");
+			request.getRequestDispatcher("table.jsp").forward(request, response);;
 		}
 		else
-			out.print("<h1>登录失败</h1>");
+			response.sendRedirect("login.jsp");
 	}
 	
 	public void init() {

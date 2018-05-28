@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>学生信息管理系统</title>
+	<link rel="stylesheet" type="text/css" href="./css/table.css">
+	<script type="text/javascript" src="./js/table.js"></script>
+</head>
+<body>
+	<div class="all">
+		<!-- 顶部，包括新增和删除两个按钮 -->
+		<div class="head">
+			<div class="headTop">
+				<div class="titleline"></div>
+				<div class="title">学生信息管理系统</div>
+				<div class="titleline"></div>
+			</div>
+			<div class="headBottom">
+				<form>	
+					<input class="addButton" type="button" value="新增" onclick="addInterface()">
+					<input class="deleteButton" type="button" value="删除" onclick="deleteEnsure()" >
+					<input class="sousuo" type="button" value="搜索" onclick="sousuo()">
+					<input id="sousuo1" type="text" placeholder="请输入姓名">
+				</form>
+			</div>
+		</div>
+
+		<div class="content">
+			<table class="tab" id="tab">
+				<tr class="backGroundColor1">
+					<th><form><input name="allseclect" type="checkbox"style="zoom:150%;" id="all" onclick="allclick(all.checked)"></form></th>
+					<th>序号</th><th>学号</th><th>姓名</th><th>学院</th>
+					<th>专业</th><th>年级</th><th>班级</th><th>年龄</th>
+					<th id="c9" colspan="3" onclick="creatElement()">操作</th>
+					
+				</tr>
+
+				<tr class="backGroundColor2">
+					<td></td><td></td><td></td><td></td><td></td>
+					<td></td><td></td><td></td><td></td>
+					<td class="operator1" onclick="checkInterface(1)"></td>
+					<td class="operator2" onclick="amendInterface(1)"></td>
+					<td class="operator3" onclick="deleteThis(1)"></td>
+				</tr>
+
+				<tr class="backGroundColor1">
+					<td></td><td></td><td></td><td></td><td></td>
+					<td></td><td></td><td></td><td></td>
+					<td class="operator1" onclick="checkInterface(2)"></td>
+					<td class="operator2" onclick="amendInterface(2)"></td>
+					<td class="operator3" onclick="deleteThis(2)"></td>
+				</tr>
+
+				<tr class="backGroundColor2">
+					<td></td><td></td><td></td><td></td><td></td>
+					<td></td><td></td><td></td><td></td>
+					<td class="operator1" onclick="checkInterface(3)"></td>
+					<td class="operator2" onclick="amendInterface(3)"></td>
+					<td class="operator3" onclick="deleteThis(3)"></td>
+				</tr>
+
+				<tr class="backGroundColor1">
+					<td></td><td></td><td></td><td></td><td></td>
+					<td></td><td></td><td></td><td></td>
+					<td class="operator1" onclick="checkInterface(4)"></td>
+					<td class="operator2" onclick="amendInterface(4)"></td>
+					<td class="operator3" onclick="deleteThis(4)"></td>
+				</tr>
+
+				<tr class="backGroundColor2">
+					<td></td><td></td><td></td><td></td><td></td>
+					<td></td><td></td><td></td><td></td>
+					<td class="operator1" onclick="checkInterface(5)"></td>
+					<td class="operator2" onclick="amendInterface(5)"></td>
+					<td class="operator3" onclick="deleteThis(5)"></td>
+
+				</tr>
+
+				<tr class="backGroundColor1">
+					<td></td><td></td><td></td><td></td><td></td>
+					<td></td><td></td><td></td><td></td>
+					<td class="operator1" onclick="checkInterface(6)"></td>
+					<td class="operator2" onclick="amendInterface(6)"></td>
+					<td class="operator3" onclick="deleteThis(6)"></td>
+				</tr>
+
+				<tr class="backGroundColor2">
+					<td></td><td></td><td></td><td></td><td></td>
+					<td></td><td></td><td></td><td></td>
+					<td class="operator1" onclick="checkInterface(7)"></td>
+					<td class="operator2" onclick="amendInterface(7)"></td>
+					<td class="operator3" onclick="deleteThis(7)"></td>
+				</tr>
+
+				<tr class="backGroundColor1">
+					<td></td><td></td><td></td><td></td><td></td>
+					<td></td><td></td><td></td><td></td>
+					<td class="operator1" onclick="checkInterface(8)"></td>
+					<td class="operator2" onclick="amendInterface(8)"></td>
+					<td class="operator3" onclick="deleteThis(8)"></td>
+				</tr>
+
+				<tr class="backGroundColor2">
+					<td></td><td></td><td></td><td></td><td></td>
+					<td></td><td></td><td></td><td></td>
+					<td class="operator1" onclick="checkInterface(9)"></td>
+					<td class="operator2" onclick="amendInterface(9)"></td>
+					<td class="operator3" onclick="deleteThis(9)"></td>
+				</tr>	
+
+				<tr class="backGroundColor1">
+					<td></td><td></td><td></td><td></td><td></td>
+					<td></td><td></td><td></td><td></td>
+					<td class="operator1" onclick="checkInterface(10)"></td>
+					<td class="operator2" onclick="amendInterface(10)"></td>
+					<td class="operator3" onclick="deleteThis(10)"></td>
+				</tr>
+			</table>
+		</div>
+		
+		<div class="footer">
+			<div class="footerLeft" id="footerLeft">
+			</div>
+
+			<div class="footerRight">
+				<form>
+				<input class="downButton" type="button" onclick="nextPageBegin()" value="下一页">
+				<input class="upButton" type="button" onclick="lastPageBegin()" value="上一页">
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+	<!--新界面的背景-->
+	<div class="backGroundColor" id="inter">
+	</div>
+	<!--学生信息添加界面-->
+	<div class="addInterface" id="addinter">
+		<div class="interface-top">		
+			新增学生信息
+		</div>
+
+		<div class="interface-middle">
+			<from id="interface-from" action="submit">
+				学号&nbsp&nbsp<input id="addstudent" type="text" placeholder="请输入学号"><br><br>
+				姓名&nbsp&nbsp<input id="addname" type="text" placeholder="请输入姓名"><br><br>
+				学院&nbsp&nbsp<input id="addcollage" type="text" placeholder="请输入学院"><br><br>
+				专业&nbsp&nbsp<input id="addmajor" type="text" placeholder="请输入专业"><br><br>
+				年级&nbsp&nbsp<input id="addgrade" type="text" placeholder="请输入年级"><br><br>
+				班级&nbsp&nbsp<input id="addclass" type="text" placeholder="请输入班级"><br><br>
+				年龄&nbsp&nbsp<input id="addage" type="text" placeholder="请输入年龄"><br><br>
+			</from>
+		</div>
+
+		<div class="interface-bottom">
+			<form id="after-from">
+				<input class="submitButton" type="button" value="提交" 
+				onclick="judgevalue()">
+				<input class="CancelButton" type="button" value="取消" 
+				onclick="CancelInterface()">
+			</form>
+		</div>
+	</div>
+
+	<!--学生信息查看界面-->
+	<div class="checkInterface" id="checkinter">
+		<div class="interface-top">		
+			查看学生信息
+		</div>
+
+		<div class="interface-middle">
+			<from id="interface-from" action="submit">
+				学号&nbsp<input id="checkstudent" type="text"><br><br>
+				姓名&nbsp<input id="checkname" type="text"><br><br>
+				学院&nbsp<input id="checkcollage" type="text"><br><br>
+				专业&nbsp<input id="checkmajor" type="text"><br><br>
+				年级&nbsp<input id="checkgrade" type="text"><br><br>
+				班级&nbsp<input id="checkclass" type="text"><br><br>
+				年龄&nbsp<input id="checkage" type="text"><br><br>
+			</from>
+		</div>
+
+		<div class="interface-bottom">
+			<form id="after-from">
+				<input class="ensureButton" type="button" value="确定" 
+				onclick="CancelInterface()">
+			</form>
+		</div>
+	</div>
+
+	<!--学生信息修改界面-->
+	<div class="amendInterface" id="amendinter">
+		<div class="interface-top">		
+			修改学生信息
+		</div>
+
+		<div class="interface-middle">
+			<from id="interface-from" action="submit">
+				学号&nbsp<input id="amendstudent" type="text"><br><br>
+				姓名&nbsp<input id="amendname" type="text"><br><br>
+				学院&nbsp<input id="amendcollage" type="text"><br><br>
+				专业&nbsp<input id="amendmajor" type="text"><br><br>
+				年级&nbsp<input id="amendgrade" type="text"><br><br>
+				班级&nbsp<input id="amendclass" type="text"><br><br>
+				年龄&nbsp<input id="amendage" type="text"><br><br>
+			</from>
+		</div>
+
+		<div class="interface-bottom">
+			<form id="after-from">
+				<input class="saveButton" type="button" value="保存" 
+				onclick="amendjudgevalue()">
+				<input class="CancelButton" type="button" value="取消"
+				onclick="CancelInterface()">
+			</form>
+		</div>
+	</div>
+</body>
+</html>
