@@ -2,15 +2,11 @@ package edu.cqut.hr.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import edu.cqut.hr.dao.LoginDao;
 import edu.cqut.hr.service.LoginService;
 
@@ -46,12 +42,12 @@ public class LoginAction extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		PrintWriter out = response.getWriter();
+
 		System.out.println("username = " + username);  
         System.out.println("pswd = " + password); 
-        LoginDao ll = new LoginDao();
+
 		boolean flag = loginservice.login("'"+username+"'", password);
-		
+
 		System.out.println("username = " + username);  
         System.out.println("pswd = " + password);  
         
