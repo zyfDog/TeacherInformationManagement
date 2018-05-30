@@ -14,19 +14,35 @@ List<Teacher>  Teachers = teacherService.queryAll();
 	<title>教师信息管理系统</title>
 	<link rel="stylesheet" type="text/css" href="./css/table.css">
 	<script>
-	var teachers = new Array(); //教师数组
+    var teachers = new Array(); //教师数组
 	var counts=1;               //当前页数
 	var number=0;               //总页数
-	var id;           //学号
-	var name;                //姓名
-	var sex;
-	var birthday;
-	var salary;
-	var college;
-	var major;
+	var id;                     //ID
+	var name;                   //姓名
+	var sex;                    //性别
+	var birthday;               //生日
+	var salary;                 //薪水
+	var college;                //学院
+	var major;                  //专业
 	//onload 事件会在页面或图像加载完成后立即发生。
 	window.onload=function(){
 		displaypage();
+	}
+	function createAll(){
+		
+		<% for(int i = 0; i < Teachers.size(); i ++){%>
+			var T = new Object();
+			T.id = "<%= Teachers.get(i).getId() %>";
+			T.name = "<%= Teachers.get(i).getName() %>";
+			T.sex = "<%= Teachers.get(i).getSex() %>";
+			T.birthday = "<%= Teachers.get(i).getBirthday() %>";
+			T.salary = "<%= Teachers.get(i).getSalary() %>";
+			T.college = "<%= Teachers.get(i).getCollege() %>";
+			T.major = "<%= Teachers.get(i).getMajor() %>";
+			teachers.push(T);
+		
+		<% }%>
+		page();
 	}
 	//显示页数
 	function displaypage(){
@@ -40,31 +56,6 @@ List<Teacher>  Teachers = teacherService.queryAll();
 		ocheckbox[i] = document.createElement("input");
 		ocheckbox[i].type = "checkbox";
 		ocheckbox[i].style = "zoom:150%;";	
-	}
-	//创建便于操作
-	function creatElement(){
-        var num = <%=  %>
-		for(var i=0;i<11;i++){
-			var teacher = new Object();	
-			teacher.id="11603080101";
-			teacher.name="詹亦凡";
-			teacher.sex="计算机";
-			teacher.birthday="软件";
-			teacher.salary="2016";
-			teacher.college="2";
-			teacher.major="17";	
-			teachers.push(teacher);
-		}
-		page();
-	}
-	//将所有教师数组排序
-	function sort(){
-		for(var i=0;i<teachers.length;i++){
-			for(var j=i;j<teachers.length;j++)
-				if(teachers[i].age>teachers[j].age){
-					teachers[i]=teachers.splice(j,1,teachers[i])[0];
-				}		
-		}
 	}
 	//翻页
 	function page(){
@@ -114,7 +105,7 @@ List<Teacher>  Teachers = teacherService.queryAll();
 	}
 
 	//.checked 判断是否被选中
-	//最后一页翻页提示
+	//最后一页翻页提示  要
 	function nextPageBegin(){
 
 		var number = teachers.length/10;
@@ -132,7 +123,7 @@ List<Teacher>  Teachers = teacherService.queryAll();
 		displaypage();
 	}
 
-	//第一页向前翻页提示
+	//第一页向前翻页提示   要
 	function lastPageBegin(){
 
 		if(counts>1){
@@ -175,7 +166,7 @@ List<Teacher>  Teachers = teacherService.queryAll();
 		alert(document.getElementById("addid").value);
 	}
 
-	//增加信息
+	//增加信息  要
 
 	function addInterface(){
 
@@ -211,7 +202,8 @@ List<Teacher>  Teachers = teacherService.queryAll();
 			CancelInterface();
 			page();
 	}
-
+ 
+	// 要
 	function deleteEnsure(){
 		if(confirm("您确定要删除吗？"))
 		deleteElement();
@@ -268,7 +260,7 @@ List<Teacher>  Teachers = teacherService.queryAll();
 		document.getElementById("amendid").value=teachers[obj].id;
 		document.getElementById("amendname").value=teachers[obj].name;
 		document.getElementById("amendsex").value=teachers[obj].sex;
-		document.getElementById("amendbirthday").value=teachers[obj].birthdat;
+		document.getElementById("amendbirthday").value=teachers[obj].birthday;
 		document.getElementById("amendsalary").value=teachers[obj].salary;
 		document.getElementById("amendcollege").value=teachers[obj].college;
 		document.getElementById("amendmajor").value=teachers[obj].major;
@@ -485,11 +477,9 @@ List<Teacher>  Teachers = teacherService.queryAll();
 		var reg=/^[0-9]{2,3}$/;   
 		return reg.test(str);    
 	}
-
-	
 	</script>
 </head>
-<body>
+<body onload="createAll()">
 	<div class="all">
 		<!-- 顶部，包括新增和删除两个按钮 -->
 		<div class="head">
@@ -512,90 +502,19 @@ List<Teacher>  Teachers = teacherService.queryAll();
 					<th><form><input name="allseclect" type="checkbox"style="zoom:150%;" id="all" onclick="allclick(all.checked)"></form></th>
 					<th>序号</th><th>ID</th><th>Sex</th><th>Name</th>
 					<th>Birthday</th><th>salary</th><th>College</th><th>major</th>
-					<th id="c9" colspan="3" onclick="creatElement()">操作</th>
-					
+					<th colspan="3">操作</th>
 				</tr>
-
-				<tr class="backGroundColor2">
+				
+				<% for(int n = 0; n < 10 ; n++) {%>
+				<tr class="backGroundColor<%=n%2%>">
 					<td></td><td></td><td></td><td></td><td></td>
 					<td></td><td></td><td></td><td></td>
-					<td class="operator1" onclick="checkInterface(1)"></td>
-					<td class="operator2" onclick="amendInterface(1)"></td>
-					<td class="operator3" onclick="deleteThis(1)"></td>
+					<td class="operator1" onclick="checkInterface(<%= n+1 %>)"></td>
+					<td class="operator2" onclick="amendInterface(<%= n+1 %>)"></td>
+					<td class="operator3" onclick="deleteThis(<%= n+1 %>)"></td>
 				</tr>
-
-				<tr class="backGroundColor1">
-					<td></td><td></td><td></td><td></td><td></td>
-					<td></td><td></td><td></td><td></td>
-					<td class="operator1" onclick="checkInterface(2)"></td>
-					<td class="operator2" onclick="amendInterface(2)"></td>
-					<td class="operator3" onclick="deleteThis(2)"></td>
-				</tr>
-
-				<tr class="backGroundColor2">
-					<td></td><td></td><td></td><td></td><td></td>
-					<td></td><td></td><td></td><td></td>
-					<td class="operator1" onclick="checkInterface(3)"></td>
-					<td class="operator2" onclick="amendInterface(3)"></td>
-					<td class="operator3" onclick="deleteThis(3)"></td>
-				</tr>
-
-				<tr class="backGroundColor1">
-					<td></td><td></td><td></td><td></td><td></td>
-					<td></td><td></td><td></td><td></td>
-					<td class="operator1" onclick="checkInterface(4)"></td>
-					<td class="operator2" onclick="amendInterface(4)"></td>
-					<td class="operator3" onclick="deleteThis(4)"></td>
-				</tr>
-
-				<tr class="backGroundColor2">
-					<td></td><td></td><td></td><td></td><td></td>
-					<td></td><td></td><td></td><td></td>
-					<td class="operator1" onclick="checkInterface(5)"></td>
-					<td class="operator2" onclick="amendInterface(5)"></td>
-					<td class="operator3" onclick="deleteThis(5)"></td>
-
-				</tr>
-
-				<tr class="backGroundColor1">
-					<td></td><td></td><td></td><td></td><td></td>
-					<td></td><td></td><td></td><td></td>
-					<td class="operator1" onclick="checkInterface(6)"></td>
-					<td class="operator2" onclick="amendInterface(6)"></td>
-					<td class="operator3" onclick="deleteThis(6)"></td>
-				</tr>
-
-				<tr class="backGroundColor2">
-					<td></td><td></td><td></td><td></td><td></td>
-					<td></td><td></td><td></td><td></td>
-					<td class="operator1" onclick="checkInterface(7)"></td>
-					<td class="operator2" onclick="amendInterface(7)"></td>
-					<td class="operator3" onclick="deleteThis(7)"></td>
-				</tr>
-
-				<tr class="backGroundColor1">
-					<td></td><td></td><td></td><td></td><td></td>
-					<td></td><td></td><td></td><td></td>
-					<td class="operator1" onclick="checkInterface(8)"></td>
-					<td class="operator2" onclick="amendInterface(8)"></td>
-					<td class="operator3" onclick="deleteThis(8)"></td>
-				</tr>
-
-				<tr class="backGroundColor2">
-					<td></td><td></td><td></td><td></td><td></td>
-					<td></td><td></td><td></td><td></td>
-					<td class="operator1" onclick="checkInterface(9)"></td>
-					<td class="operator2" onclick="amendInterface(9)"></td>
-					<td class="operator3" onclick="deleteThis(9)"></td>
-				</tr>	
-
-				<tr class="backGroundColor1">
-					<td></td><td></td><td></td><td></td><td></td>
-					<td></td><td></td><td></td><td></td>
-					<td class="operator1" onclick="checkInterface(10)"></td>
-					<td class="operator2" onclick="amendInterface(10)"></td>
-					<td class="operator3" onclick="deleteThis(10)"></td>
-				</tr>
+				
+				<% }%>
 			</table>
 		</div>
 		
