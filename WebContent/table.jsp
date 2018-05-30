@@ -1,14 +1,15 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8" %>
 <%@ page import="edu.cqut.hr.service.TeacherService,edu.cqut.hr.model.Teacher,edu.cqut.hr.dao.TeacherDao" %>
+<% 
+        String path = request.getContextPath(); 
+        String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; 
+        String name = request.getParameter("name");//用request得到 
+%> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=uft-8">
 <title>教师管理系统</title>
-<%
-TeacherService teacherService = new TeacherDao();
-List<Teacher>  Teachers = teacherService.queryAll();
-%>
 <head>
 	<meta charset="utf-8">
 	<title>教师信息管理系统</title>
@@ -30,7 +31,11 @@ List<Teacher>  Teachers = teacherService.queryAll();
 	}
 	function createAll(){
 		
-		<% for(int i = 0; i < Teachers.size(); i ++){%>
+		<% 
+		TeacherService teacherService = new TeacherDao();
+		List<Teacher>  Teachers = teacherService.queryAll();
+		
+		for(int i = 0; i < Teachers.size(); i ++){%>
 			var T = new Object();
 			T.id = "<%= Teachers.get(i).getId() %>";
 			T.name = "<%= Teachers.get(i).getName() %>";
@@ -59,7 +64,6 @@ List<Teacher>  Teachers = teacherService.queryAll();
 	}
 	//翻页
 	function page(){
-
 
 		var tab = document.getElementById("tab");
 
@@ -299,9 +303,6 @@ List<Teacher>  Teachers = teacherService.queryAll();
 
 		var t4 =document.getElementById("amendinter") 
 		t4.style.display='none';
-
-		//var t5 =document.getElementById("deleteinter") 
-		//t5.style.display='none';
 	}
 	//删除元素
 
@@ -330,7 +331,7 @@ List<Teacher>  Teachers = teacherService.queryAll();
 	function amendjudgevalue(){
 		var judge = true;
 
-		for (var i = teachers.length - 1; i >= 0; i--) {
+		<%/*for (var i = teachers.length - 1; i >= 0; i--) {
 			if(document.getElementById("amendid").value==teachers[i].teacherNum){
 				alert("教师编号重复，请重新输入");
 				document.getElementById("amendid").focus();
@@ -382,7 +383,7 @@ List<Teacher>  Teachers = teacherService.queryAll();
 			judge=false;
 			return;
 		}
-			
+	    */%>
 //		alert("修改正确，请点击确定提交");
 		amendensure();	
 	}
@@ -392,7 +393,7 @@ List<Teacher>  Teachers = teacherService.queryAll();
 	function judgevalue(){
 		var judge = true;
 
-		for (var i = teachers.length - 1; i >= 0; i--) {
+		<%/*for (var i = teachers.length - 1; i >= 0; i--) {
 			if(document.getElementById("addid").value==teachers[i].teacherNum){
 				alert("教师编号重复，请重新输入");
 				document.getElementById("amendid").focus();
@@ -444,6 +445,7 @@ List<Teacher>  Teachers = teacherService.queryAll();
 			judge=false;
 			return;
 		}
+		*/%>
 //		alert("输入正确，请点击确定提交");
 		ensure();	
 	}
@@ -476,6 +478,17 @@ List<Teacher>  Teachers = teacherService.queryAll();
 	function isteacherage(str) {
 		var reg=/^[0-9]{2,3}$/;   
 		return reg.test(str);    
+	}
+	
+	
+	function updateAction() {
+		document.updatename.action = "TeacherAction?type=update";
+		document.updatename.submit();
+	} 
+	
+	function addAction() {
+		document.addname.action = "TeacherAction?type=add";
+		document.addname.submit();
 	}
 	</script>
 </head>
@@ -541,22 +554,20 @@ List<Teacher>  Teachers = teacherService.queryAll();
 			新增教师信息
 		</div>
 
-		<div class="interface-middle">
-			<from id="interface-from" action="submit">
-				ID&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="addid" type="text" placeholder="请输入ID"><br><br>
-				Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="addname" type="text" placeholder="请输入姓名"><br><br>
-				Sex&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="addsex" type="text" placeholder="请输入性别"><br><br>
-				Birthday&nbsp&nbsp<input id="addbirthday" type="text" placeholder="请输入生日"><br><br>
-				Salary&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="addsalary" type="text" placeholder="请输入薪水"><br><br>
-				College&nbsp&nbsp&nbsp<input id="addcollege" type="text" placeholder="请输入学院"><br><br>
-				Major&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="addmajor" type="text" placeholder="请输入专业"><br><br>
-			</from>
+        <form name="addname" method="post">
+		<div id="interface-from2" class="interface-middle">
+				ID&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input name="id" id="addid" type="text" placeholder="请输入ID"><br><br>
+				Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input name="name" id="addname" type="text" placeholder="请输入姓名"><br><br>
+				Sex&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input name="sex" id="addsex" type="text" placeholder="请输入性别"><br><br>
+				Birthday&nbsp&nbsp<input name="birthday" id="addbirthday" type="text" placeholder="请输入生日"><br><br>
+				Salary&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input name="salary" id="addsalary" type="text" placeholder="请输入薪水"><br><br>
+				College&nbsp&nbsp&nbsp<input name="college" id="addcollege" type="text" placeholder="请输入学院"><br><br>
+				Major&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input name="major" id="addmajor" type="text" placeholder="请输入专业"><br><br>
 		</div>
 
-		<div class="interface-bottom">
-			<form id="after-from">
+		<div class="interface-bottom2" id="after-from">
 				<input class="submitButton" type="button" value="提交" 
-				onclick="judgevalue()">
+				onclick="addAction()">
 				<input class="CancelButton" type="button" value="取消" 
 				onclick="CancelInterface()">
 			</form>
@@ -571,13 +582,13 @@ List<Teacher>  Teachers = teacherService.queryAll();
 
 		<div class="interface-middle">
 			<from id="interface-from" action="submit">
-				ID&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="checkid" type="text"><br><br>
-				Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="checkname" type="text"><br><br>
-				Sex&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="checksex" type="text"><br><br>
-				Birthday&nbsp&nbsp<input id="checkbirthday" type="text"><br><br>
-				Salary&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="checksalary" type="text"><br><br>
-				College&nbsp&nbsp&nbsp<input id="checkcollege" type="text"><br><br>
-				Major&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="checkmajor" type="text"><br><br>
+				ID&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input name="id" id="checkid" type="text"><br><br>
+				Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input name="name" id="checkname" type="text"><br><br>
+				Sex&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input name="sex" id="checksex" type="text"><br><br>
+				Birthday&nbsp&nbsp<input name="birthday" id="checkbirthday" type="text"><br><br>
+				Salary&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input name="salary" id="checksalary" type="text"><br><br>
+				College&nbsp&nbsp&nbsp<input name="college" id="checkcollege" type="text"><br><br>
+				Major&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input name="major" id="checkmajor" type="text"><br><br>
 			</from>
 		</div>
 
@@ -595,26 +606,24 @@ List<Teacher>  Teachers = teacherService.queryAll();
 			修改教师信息
 		</div>
 
-		<div class="interface-middle">
-			<from id="interface-from" action="submit">
-				ID&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="amendid" type="text"><br><br>
-				Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="amendname" type="text"><br><br>
-				Sex&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="amendsex" type="text"><br><br>
-				Birthday&nbsp&nbsp<input id="amendbirthday" type="text"><br><br>
-				Salary&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="amendsalary" type="text"><br><br>
-				College&nbsp&nbsp&nbsp<input id="amendcollege" type="text"><br><br>
-				Major&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="amendmajor" type="text"><br><br>
-			</from>
+        <form  name = "updatename" method="post">
+		<div class="interface-middle" id="interface-from2">
+				ID&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input name = "id" id="amendid" type="text"><br><br>
+				Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input name = "name" id="amendname" type="text"><br><br>
+				Sex&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input name = "sex" id="amendsex" type="text"><br><br>
+				Birthday&nbsp&nbsp<input name = "birthday" id="amendbirthday" type="text"><br><br>
+				Salary&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input name = "salary" id="amendsalary" type="text"><br><br>
+				College&nbsp&nbsp&nbsp<input name = "college" id="amendcollege" type="text"><br><br>
+				Major&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input name = "major" id="amendmajor" type="text"><br><br>
 		</div>
-
-		<div class="interface-bottom">
-			<form id="after-from">
+		<div class="interface-bottom2" id="after-from">
+			
 				<input class="saveButton" type="button" value="保存" 
-				onclick="amendjudgevalue()">
+				onclick="updateAction()">
 				<input class="CancelButton" type="button" value="取消"
 				onclick="CancelInterface()">
-			</form>
 		</div>
+		</form>
 	</div>
 </body>
 </html>

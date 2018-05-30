@@ -83,7 +83,7 @@ td{
 	text-align: center;
 	border: 1px solid;
 }
-.backGroundColor0{
+.backGroundColor2{
 	background-color: white;
 }
 .backGroundColor1{
@@ -193,10 +193,20 @@ input{
 	top: 30px;
 	left: 300px
 }
+#interface-from2{
+	text-align: center;
+	position: relative;
+	top: 30px;
+	border-bottom:solid 1px black;
+}
 .interface-bottom{
 	width: 1000px;
 	height: 40px;
 	border-top:solid 1px black;
+}
+.interface-bottom2{
+	width: 1000px;
+	height: 40px;
 }
 
 #after-from{

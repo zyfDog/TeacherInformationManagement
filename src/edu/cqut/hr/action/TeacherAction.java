@@ -43,17 +43,17 @@ public class TeacherAction extends HttpServlet {
 	}
 
 	/**
-	 * @throws UnsupportedEncodingException 
+	 * @throws IOException 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, UnsupportedEncodingException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String type = request.getParameter("type");
 		
-		if("Insert".equals(type)) {
+		if("add".equals(type)) {
 			try {
-				Insert(request, response);
+				add(request, response);
 			} catch (Exception e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
@@ -75,17 +75,10 @@ public class TeacherAction extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
-		try {
-			queryAll(request, response);
-		} catch (Exception e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
-		
+		response.sendRedirect("table.jsp");
 	}
 	
-	public void Insert(HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public void add(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		Integer id = Integer.valueOf(request.getParameter("id"));
 		String name = request.getParameter("name");
 		String sex = request.getParameter("sex");
