@@ -95,7 +95,9 @@ public class TeacherAction extends HttpServlet {
 	}
 	
 	public void delete(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		Integer id = Integer.valueOf(request.getParameter("id"));
+		
+		Integer id = Integer.valueOf(request.getParameter("deleteid"));
+		System.out.println(id);
 		teacherService.deleteTeacher(id);
 	}
 	
