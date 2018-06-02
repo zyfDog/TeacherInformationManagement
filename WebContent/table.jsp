@@ -78,6 +78,7 @@
 				tab.rows[num].cells[0].appendChild(ocheckbox[num-1]);
 				tab.rows[num].cells[1].innerHTML=count+num;
 				tab.rows[num].cells[2].innerHTML=teacher.id;
+				document.getElementById("idinput").value="teacher.id";
 				tab.rows[num].cells[3].innerHTML=teacher.name;
 				tab.rows[num].cells[4].innerHTML=teacher.sex;
 				tab.rows[num].cells[5].innerHTML=teacher.birthday;
@@ -157,7 +158,7 @@
 			}
 		}
 	}
-	//空值
+	//空值    不要++ 
 	function emptyvalue(){
 
 		document.getElementById("addid").innerHTML="";
@@ -490,6 +491,13 @@
 		document.addname.action = "TeacherAction?type=add";
 		document.addname.submit();
 	}
+	function deleteoneAction() {
+		document.deleteonename.action = "TeacherAction?type=delete";
+		document.deleteonename.submit();
+	}
+	function deletemantAction() {
+		
+	}
 	</script>
 </head>
 <body onload="createAll()">
@@ -502,17 +510,17 @@
 				<div class="titleline"></div>
 			</div>
 			<div class="headBottom">
-				<form>	
+				<form name="deletemanyname" method= "post">	
 					<input class="addButton" type="button" value="新增" onclick="addInterface()">
 					<input class="deleteButton" type="button" value="删除" onclick="deleteEnsure()" >
 				</form>
 			</div>
 		</div>
-
 		<div class="content">
+		<form name = "deleteonename" method = "post">
 			<table class="tab" id="tab">
 				<tr class="backGroundColor1">
-					<th><form><input name="allseclect" type="checkbox"style="zoom:150%;" id="all" onclick="allclick(all.checked)"></form></th>
+					<th><input name="allseclect" type="checkbox"style="zoom:150%;" id="all" onclick="allclick(all.checked)"></th>
 					<th>序号</th><th>ID</th><th>Sex</th><th>Name</th>
 					<th>Birthday</th><th>salary</th><th>College</th><th>major</th>
 					<th colspan="3">操作</th>
@@ -520,15 +528,15 @@
 				
 				<% for(int n = 0; n < 10 ; n++) {%>
 				<tr class="backGroundColor<%=n%2%>">
-					<td></td><td></td><td></td><td></td><td></td>
+					<td></td><td><input name="<%=n+1%>" type="hidden" id="idinput"/></td><td></td><td></td><td></td>
 					<td></td><td></td><td></td><td></td>
 					<td class="operator1" onclick="checkInterface(<%= n+1 %>)"></td>
 					<td class="operator2" onclick="amendInterface(<%= n+1 %>)"></td>
-					<td class="operator3" onclick="deleteThis(<%= n+1 %>)"></td>
+					<td class="operator3" onclick="deleteoneAction()"></td>
 				</tr>
-				
 				<% }%>
 			</table>
+		</form>
 		</div>
 		
 		<div class="footer">
