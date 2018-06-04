@@ -347,7 +347,7 @@
 
         <form  name = "updatename" method="post">
 		<div class="interface-middle" id="interface-from2">
-				ID&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input name = "id" id="amendid" type="text"><br><br>
+				ID&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input name = "id" id="amendid" type="text" readonly="readonly"><br><br>
 				Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input name = "name" id="amendname" type="text"><br><br>
 				Sex&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input name = "sex" id="amendsex" type="text"><br><br>
 				Birthday&nbsp&nbsp<input name = "birthday" id="amendbirthday" type="text"><br><br>
